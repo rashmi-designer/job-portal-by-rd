@@ -44,7 +44,7 @@ export default function Navbar() {
             <img
               src={logo}
               alt="RD Job Portal"
-              className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain"
             />
           </Link>
 

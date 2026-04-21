@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export default function Login() {
   const navigate = useNavigate();
+
+  // Check if user is already authenticated and redirect to dashboard
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      navigate("/", { replace: true });
+    }
+  }, [navigate]);
 
   const [form, setForm] = useState({
     email: "",
