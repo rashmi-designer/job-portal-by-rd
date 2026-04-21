@@ -8,8 +8,10 @@ export default function MainLayout({ children }) {
       <Navbar />
 
       {/* Page Content */}
-      <main className="flex-grow p-4 bg-gray-50">
-        {children}
+      <main className="flex-grow px-2 sm:px-4 py-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          {children}
+        </div>
       </main>
 
       {/* Footer */}

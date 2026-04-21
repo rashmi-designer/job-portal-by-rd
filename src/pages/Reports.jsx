@@ -127,9 +127,9 @@ export default function Reports() {
 
   return (
     <MainLayout>
-      <div className="p-4">
+      <div>
 
-        <h1 className="text-2xl font-bold mb-4">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4">
           Reports
         </h1>
 
@@ -150,32 +150,32 @@ export default function Reports() {
         ) : (
           <>
             {/* Top Cards */}
-            <div className="grid md:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
 
               <div className="bg-blue-100 text-blue-700 p-4 rounded shadow">
-                <p>Total Applicants</p>
-                <h2 className="text-2xl font-bold">
+                <p className="text-xs sm:text-sm">Total Applicants</p>
+                <h2 className="text-xl sm:text-2xl font-bold">
                   {totalApplicants}
                 </h2>
               </div>
 
               <div className="bg-green-100 text-green-700 p-4 rounded shadow">
-                <p>Selected</p>
-                <h2 className="text-2xl font-bold">
+                <p className="text-xs sm:text-sm">Selected</p>
+                <h2 className="text-xl sm:text-2xl font-bold">
                   {selected}
                 </h2>
               </div>
 
               <div className="bg-red-100 text-red-700 p-4 rounded shadow">
-                <p>Rejected</p>
-                <h2 className="text-2xl font-bold">
+                <p className="text-xs sm:text-sm">Rejected</p>
+                <h2 className="text-xl sm:text-2xl font-bold">
                   {rejected}
                 </h2>
               </div>
 
               <div className="bg-yellow-100 text-yellow-700 p-4 rounded shadow">
-                <p>Hiring Rate</p>
-                <h2 className="text-2xl font-bold">
+                <p className="text-xs sm:text-sm">Hiring Rate</p>
+                <h2 className="text-xl sm:text-2xl font-bold">
                   {hiringRate}%
                 </h2>
               </div>
@@ -183,44 +183,50 @@ export default function Reports() {
             </div>
 
             {/* Charts */}
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6">
 
-              <div className="bg-white p-4 shadow rounded">
-                <h2 className="font-semibold mb-3">
+              <div className="bg-white p-3 sm:p-4 shadow rounded overflow-x-auto">
+                <h2 className="font-semibold text-sm sm:text-base mb-3">
                   Applications Per Job
                 </h2>
 
                 {applications.length > 0 ? (
-                  <Bar data={barData} />
+                  <div className="min-h-72 flex items-center">
+                    <Bar data={barData} options={{ responsive: true, maintainAspectRatio: false }} />
+                  </div>
                 ) : (
-                  <p>No data found</p>
+                  <p className="text-sm text-gray-600">No data found</p>
                 )}
               </div>
 
-              <div className="bg-white p-4 shadow rounded">
-                <h2 className="font-semibold mb-3">
+              <div className="bg-white p-3 sm:p-4 shadow rounded overflow-x-auto">
+                <h2 className="font-semibold text-sm sm:text-base mb-3">
                   Job Salary Trends
                 </h2>
 
                 {jobs.length > 0 ? (
-                  <Line data={lineData} />
+                  <div className="min-h-72 flex items-center">
+                    <Line data={lineData} options={{ responsive: true, maintainAspectRatio: false }} />
+                  </div>
                 ) : (
-                  <p>No jobs found</p>
+                  <p className="text-sm text-gray-600">No jobs found</p>
                 )}
               </div>
 
             </div>
 
             {/* Bottom Chart */}
-            <div className="bg-white p-4 shadow rounded max-w-md mx-auto">
-              <h2 className="font-semibold mb-3 text-center">
+            <div className="bg-white p-3 sm:p-4 shadow rounded max-w-md mx-auto">
+              <h2 className="font-semibold text-sm sm:text-base mb-3 text-center">
                 Applicant Status Ratio
               </h2>
 
               {applications.length > 0 ? (
-                <Doughnut data={doughnutData} />
+                <div className="min-h-64 flex items-center">
+                  <Doughnut data={doughnutData} options={{ responsive: true, maintainAspectRatio: false }} />
+                </div>
               ) : (
-                <p>No data found</p>
+                <p className="text-sm text-gray-600 text-center">No data found</p>
               )}
             </div>
           </>

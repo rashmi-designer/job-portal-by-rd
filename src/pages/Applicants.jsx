@@ -64,23 +64,23 @@ export default function Applicants() {
 
   return (
     <MainLayout>
-      <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">Applicants</h1>
+      <div>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4">Applicants</h1>
 
         {/* Filters */}
-        <div className="grid md:grid-cols-3 gap-3 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 mb-4">
           <input
             type="text"
             placeholder="Search by name, email, job..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="border p-2 rounded"
+            className="border p-2 rounded text-sm"
           />
 
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="border p-2 rounded"
+            className="border p-2 rounded text-sm"
           >
             <option value="">All Status</option>
             <option>Pending</option>
@@ -94,22 +94,22 @@ export default function Applicants() {
               setStatusFilter("");
               setCurrentPage(1);
             }}
-            className="bg-gray-500 text-white rounded px-3 py-2"
+            className="bg-gray-500 text-white rounded px-3 py-2 text-sm font-medium hover:bg-gray-600"
           >
             Reset
           </button>
         </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto bg-white shadow rounded">
-          <table className="w-full">
+        {/* Table - Desktop */}
+        <div className="hidden md:block overflow-x-auto bg-white shadow rounded">
+          <table className="w-full text-sm">
             <thead className="bg-gray-100">
               <tr>
-                <th className="p-3 border">Name</th>
-                <th className="p-3 border">Email</th>
-                <th className="p-3 border">Applied Job</th>
-                <th className="p-3 border">Status</th>
-                <th className="p-3 border">Change Status</th>
+                <th className="p-3 border text-left">Name</th>
+                <th className="p-3 border text-left">Email</th>
+                <th className="p-3 border text-left">Applied Job</th>
+                <th className="p-3 border text-left">Status</th>
+                <th className="p-3 border text-left">Change Status</th>
               </tr>
             </thead>
 
@@ -123,7 +123,7 @@ export default function Applicants() {
 
                     <td className="p-3 border">
                       <span
-                        className={`px-2 py-1 rounded text-sm ${
+                        className={`px-2 py-1 rounded text-xs ${
                           app.status === "Selected"
                             ? "bg-green-100 text-green-700"
                             : app.status === "Rejected"
@@ -141,7 +141,7 @@ export default function Applicants() {
                         onChange={(e) =>
                           updateStatus(app.id, e.target.value)
                         }
-                        className="border p-1 rounded"
+                        className="border p-1 rounded text-xs"
                       >
                         <option>Pending</option>
                         <option>Selected</option>
@@ -161,14 +161,53 @@ export default function Applicants() {
           </table>
         </div>
 
+        {/* Card View - Mobile */}
+        <div className="md:hidden space-y-3">
+          {currentData.length > 0 ? (
+            currentData.map((app) => (
+              <div key={app.id} className="bg-white p-4 rounded-lg shadow border hover:shadow-md transition">
+                <div className="flex justify-between items-start gap-2 mb-2">
+                  <h3 className="font-semibold text-sm flex-1">{app.name}</h3>
+                  <span
+                    className={`px-2 py-1 rounded text-xs whitespace-nowrap ${
+                      app.status === "Selected"
+                        ? "bg-green-100 text-green-700"
+                        : app.status === "Rejected"
+                        ? "bg-red-100 text-red-700"
+                        : "bg-yellow-100 text-yellow-700"
+                    }`}
+                  >
+                    {app.status}
+                  </span>
+                </div>
+                <p className="text-xs text-gray-600 mb-1 break-all"><strong>Email:</strong> {app.email}</p>
+                <p className="text-xs text-gray-600 mb-3"><strong>Job:</strong> {app.job}</p>
+                <select
+                  value={app.status}
+                  onChange={(e) => updateStatus(app.id, e.target.value)}
+                  className="border p-2 rounded text-xs w-full"
+                >
+                  <option>Pending</option>
+                  <option>Selected</option>
+                  <option>Rejected</option>
+                </select>
+              </div>
+            ))
+          ) : (
+            <div className="text-center p-4 text-sm text-gray-500">
+              No applicants found
+            </div>
+          )}
+        </div>
+
         {/* Pagination */}
         {totalPages > 0 && (
-          <div className="flex justify-center items-center gap-3 mt-5">
+          <div className="flex justify-center items-center gap-2 sm:gap-3 mt-5 flex-wrap">
             {/* Prev */}
             <button
               onClick={goPrev}
               disabled={currentPage === 1}
-              className={`w-10 h-10 rounded-full border flex items-center justify-center ${
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center text-sm sm:text-base ${
                 currentPage === 1
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                   : "bg-white text-blue-600 hover:bg-blue-50"
@@ -178,7 +217,7 @@ export default function Applicants() {
             </button>
 
             {/* Current Page */}
-            <div className="px-4 py-2 bg-blue-500 text-white rounded font-semibold min-w-[90px] text-center">
+            <div className="px-2 sm:px-4 py-1 sm:py-2 bg-blue-500 text-white rounded font-semibold min-w-[80px] sm:min-w-[90px] text-center text-sm">
               {currentPage} / {totalPages}
             </div>
 
@@ -186,7 +225,7 @@ export default function Applicants() {
             <button
               onClick={goNext}
               disabled={currentPage === totalPages}
-              className={`w-10 h-10 rounded-full border flex items-center justify-center ${
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full border flex items-center justify-center text-sm sm:text-base ${
                 currentPage === totalPages
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                   : "bg-white text-blue-600 hover:bg-blue-50"

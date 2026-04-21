@@ -486,6 +486,8 @@ export default function Profile() {
             </div>
           </div>
         </div>
-      </div>      </div>    </MainLayout>
+      </div>
+    </div>
+    </MainLayout>
   );
 }

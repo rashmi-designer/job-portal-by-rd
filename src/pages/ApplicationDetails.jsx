@@ -32,7 +32,7 @@ const ApplicationDetails = () => {
   if (!application) {
     return (
       <MainLayout>
-        <div className="p-6 text-center text-red-500 font-semibold">
+        <div className="p-4 sm:p-6 text-center text-red-500 font-semibold text-sm sm:text-base">
           Application not found
         </div>
       </MainLayout>
@@ -41,58 +41,58 @@ const ApplicationDetails = () => {
 
   return (
     <MainLayout>
-      <div className="p-4 max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto px-2 sm:px-4">
 
-        <div className="bg-white shadow rounded p-6">
+        <div className="bg-white shadow rounded p-4 sm:p-6">
 
           {/* Header */}
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+            <h1 className="text-xl sm:text-2xl font-bold">
               Application Details
             </h1>
 
             <button
               onClick={() => navigate(-1)}
-              className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+              className="w-full sm:w-auto bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 text-sm sm:text-base"
             >
               Back
             </button>
           </div>
 
           {/* Profile */}
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6">
 
             <div>
-              <p className="text-sm text-gray-500">Applicant Name</p>
-              <p className="font-semibold">{application.name}</p>
+              <p className="text-xs sm:text-sm text-gray-500 mb-1">Applicant Name</p>
+              <p className="font-semibold text-sm sm:text-base">{application.name}</p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-500">Email</p>
-              <p className="font-semibold">{application.email}</p>
+              <p className="text-xs sm:text-sm text-gray-500 mb-1">Email</p>
+              <p className="font-semibold text-sm sm:text-base break-all">{application.email}</p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-500">Applied Job</p>
-              <p className="font-semibold">{application.job}</p>
+              <p className="text-xs sm:text-sm text-gray-500 mb-1">Applied Job</p>
+              <p className="font-semibold text-sm sm:text-base">{application.job}</p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-500">Application ID</p>
-              <p className="font-semibold">{application.id}</p>
+              <p className="text-xs sm:text-sm text-gray-500 mb-1">Application ID</p>
+              <p className="font-semibold text-sm sm:text-base">{application.id}</p>
             </div>
 
           </div>
 
           {/* Resume */}
           <div className="mb-6">
-            <p className="text-sm text-gray-500 mb-1">Resume</p>
+            <p className="text-xs sm:text-sm text-gray-500 mb-2">Resume</p>
 
             <a
               href={application.resume || "#"}
               target="_blank"
               rel="noreferrer"
-              className="text-blue-600 underline"
+              className="text-blue-600 underline text-xs sm:text-sm hover:text-blue-800"
             >
               View Resume
             </a>
@@ -100,10 +100,10 @@ const ApplicationDetails = () => {
 
           {/* Status */}
           <div className="mb-6">
-            <p className="text-sm text-gray-500 mb-2">Current Status</p>
+            <p className="text-xs sm:text-sm text-gray-500 mb-2">Current Status</p>
 
             <span
-              className={`px-3 py-1 rounded text-sm font-medium ${
+              className={`inline-block px-3 py-1 rounded text-xs sm:text-sm font-medium ${
                 application.status === "Selected"
                   ? "bg-green-100 text-green-700"
                   : application.status === "Rejected"
@@ -116,12 +116,12 @@ const ApplicationDetails = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 flex-wrap">
 
             <button
               onClick={() => updateStatus("Selected")}
               disabled={application.status !== "Pending"}
-              className={`px-4 py-2 rounded text-white ${
+              className={`w-full sm:w-auto px-3 sm:px-4 py-2 rounded text-white text-sm sm:text-base font-medium transition ${
                 application.status !== "Pending"
                   ? "bg-green-300 cursor-not-allowed"
                   : "bg-green-500 hover:bg-green-600"
@@ -133,7 +133,7 @@ const ApplicationDetails = () => {
             <button
               onClick={() => updateStatus("Rejected")}
               disabled={application.status !== "Pending"}
-              className={`px-4 py-2 rounded text-white ${
+              className={`w-full sm:w-auto px-3 sm:px-4 py-2 rounded text-white text-sm sm:text-base font-medium transition ${
                 application.status !== "Pending"
                   ? "bg-red-300 cursor-not-allowed"
                   : "bg-red-500 hover:bg-red-600"
@@ -144,7 +144,7 @@ const ApplicationDetails = () => {
 
             <button
               onClick={() => updateStatus("Pending")}
-              className="px-4 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-600"
+              className="w-full sm:w-auto px-3 sm:px-4 py-2 rounded bg-yellow-500 text-white text-sm sm:text-base font-medium hover:bg-yellow-600 transition"
             >
               Mark Pending
             </button>
@@ -153,7 +153,7 @@ const ApplicationDetails = () => {
 
           {/* Message */}
           {application.status !== "Pending" && (
-            <p className="text-sm text-gray-500 mt-4">
+            <p className="text-xs sm:text-sm text-gray-500 mt-4">
               Status already updated.
             </p>
           )}

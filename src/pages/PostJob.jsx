@@ -159,11 +159,11 @@ export default function PostJob() {
             {errors.requirements && <p className="text-red-500 text-xs mt-1">{errors.requirements}</p>}
           </div>
 
-          <div className="flex justify-center gap-3 pt-2">
-            <button onClick={handleSubmit} className="bg-blue-600 text-white px-6 py-2 rounded font-medium hover:bg-blue-700 transition">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">
+            <button onClick={handleSubmit} className="w-full sm:w-auto bg-blue-600 text-white px-6 py-2 rounded font-medium hover:bg-blue-700 transition">
               Post Job
             </button>
-            <button onClick={handleReset} className="bg-gray-200 text-gray-700 px-6 py-2 rounded font-medium hover:bg-gray-300 transition">
+            <button onClick={handleReset} className="w-full sm:w-auto bg-gray-200 text-gray-700 px-6 py-2 rounded font-medium hover:bg-gray-300 transition">
               Reset
             </button>
           </div>

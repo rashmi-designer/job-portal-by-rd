@@ -124,14 +124,14 @@ export default function AddCompany() {
 
   return (
     <MainLayout>
-      <div className="p-4 max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6 text-gray-800">
+      <div className="max-w-4xl mx-auto px-2 sm:px-4">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">
           {editId ? "Edit Company" : "Add Company"}
         </h1>
 
         {/* Form */}
-        <div className="bg-white p-6 shadow-lg rounded-lg">
-          <div className="grid md:grid-cols-2 gap-4">
+        <div className="bg-white p-4 sm:p-6 shadow-lg rounded-lg">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             {/* Company Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -230,17 +230,17 @@ export default function AddCompany() {
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-center gap-4 mt-8 pt-6 border-t">
+          <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t">
             <button
               onClick={handleSubmit}
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
+              className="w-full sm:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-200"
             >
               {editId ? "Update Company" : "Add Company"}
             </button>
 
             <button
               onClick={() => navigate("/companies")}
-              className="bg-gray-500 text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-600 transition duration-200"
+              className="w-full sm:w-auto bg-gray-500 text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-600 transition duration-200"
             >
               Back to List
             </button>
